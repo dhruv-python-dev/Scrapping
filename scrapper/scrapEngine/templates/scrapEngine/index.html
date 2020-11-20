@@ -1,0 +1,77 @@
+{% extends 'scrapEngine/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-4">
+            <form class="form-inline my-2 my-lg-0" action="{% url 'jobs' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                <input type="hidden" name="paginator" value="">
+                <button class="form-control btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% if jobs %}
+    {% else %}
+        <div class="row mt-0">
+            <div class="col-sm-3">
+                <h6 class="text-muted">
+                    recent :-
+                </h6>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        {% for search in recent_search %}
+            <div class="col-sm-2">
+                <form action="{% url 'jobs' %}" method="POST" class="p-0">
+                    {% csrf_token %}
+                    <button  class="form-control btn btn-sm btn-outline-dark" type="submit">{{search}}</button>
+                    <input type="hidden" name="query" value="{{search}}">
+                    <input type="hidden" name="paginator" value="">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <div class="row p-0">
+        {% for job in jobs %}
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                <a href="{{job.url}}&vjk={{job.id}}">
+                    <div class="card mt-2" style="height: 175px;">
+                        <div class="p-2">
+                            <p class="mb-0"><b>{{job.title}}</b></p>
+                            <p class="text-muted mb-0">{{job.company}}</p>
+                            <p class="text-muted mb-0">{{job.location}}</p>
+                            <p class="mb-0"><b>{{job.salary}}</b></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container p-0">
+    <div class="row">
+        <div class="col-sm-4">
+            {% if jobs %}
+                <div class="col-sm-2">
+                    <form class="form-inline my-2" action="{% url 'jobs' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="query" value="{{query}}">
+                        <input type="hidden" name="paginator" value="{{paginator}}">
+                        <button class="form-control btn btn-outline-info" type="submit">Next</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
