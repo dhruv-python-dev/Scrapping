@@ -6,31 +6,46 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>ScrapingApp</title>
+
+    <style>
+        table {
+            border: 2px solid;
+            border-color: brown;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">ScrapperApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="container">
+    <div class="row p-0">
         
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">About</a>
-            </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <div class="container p-0 mb-4">
-        {% block content %} {% endblock %}
+            <div class="col-sm-3">
+                <div class="card p-0" style="border: 2px solid black;">
+                    <a href="{{url}}&vjk={{id}}" target="_blank" style="color: black;">
+                        <img src="{{image}}" alt="{{image}}" class="card-img-top" style="width: 250px; height: 250px;">
+                    </a>
+                    <table class="card-body table">
+                        <tr>
+                            <th>Title</th>
+                            <td>{{title}}</td>
+                        </tr>
+                        <tr>
+                            <th>Company</th>
+                            <td>{{company}}</td>
+                        </tr>
+                        <tr>
+                            <th>Location</th>
+                            <td>{{location}}</td>
+                        </tr>
+                        <tr>
+                            <th>Salary</th>
+                            <td>{{salary}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
     </div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -6,7 +6,11 @@
         <div class="col-sm-4">
             <form class="form-inline my-2 my-lg-0" action="{% url 'jobs' %}" method="POST">
                 {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" 
+                aria-label="Search" name="query">
+                <input class="form-control mr-sm-2" type="search" placeholder="location" aria-label="Search" name="location">
+
+                <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query"> -->
                 <input type="hidden" name="paginator" value="">
                 <button class="form-control btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -27,10 +31,11 @@
     {% endif %}
     <div class="row">
         {% for search in recent_search %}
-            <div class="col-sm-2">
+            <div class="col-sm-2 mb-2">
                 <form action="{% url 'jobs' %}" method="POST" class="p-0">
                     {% csrf_token %}
-                    <button  class="form-control btn btn-sm btn-outline-dark" type="submit">{{search}}</button>
+                    <button  class="form-control btn btn-sm btn-outline-dark" type="submit">{{search}}
+                    </button>
                     <input type="hidden" name="query" value="{{search}}">
                     <input type="hidden" name="paginator" value="">
                 </form>
@@ -67,6 +72,7 @@
                         {% csrf_token %}
                         <input type="hidden" name="query" value="{{query}}">
                         <input type="hidden" name="paginator" value="{{paginator}}">
+                        <input type="hidden" name="location" value="{{location}}">
                         <button class="form-control btn btn-outline-info" type="submit">Next</button>
                     </form>
                 </div>
